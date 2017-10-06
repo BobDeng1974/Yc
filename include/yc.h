@@ -42,6 +42,18 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+#include <stdio.h>
+
+void _y_assert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
+
+#ifndef NDEBUG
+#   define y_assert(Expr, Msg) \
+	_y_assert(#Expr, Expr, __FILE__, __LINE__, Msg)
+#else
+#   define y_assert(Expr, Msg) ;
+#endif
+
 #ifdef __cplusplus
 }
 #endif

@@ -34,6 +34,8 @@ set(ignoreMe "${QT_QMAKE_EXECUTABLE}")
 set("YC_INCLUDE_DIR" "include")
 set("YC_SRC_DIR" "src")
 
+add_subdirectory("cmake")
+
 include_directories("${YC_INCLUDE_DIR}")
 add_subdirectory("${YC_INCLUDE_DIR}")
 

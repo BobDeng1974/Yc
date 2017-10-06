@@ -30,16 +30,4 @@ set("YC_SRC"
 	"yc.c"
 )
 
-# Do the shared library on platforms other than Windows.
-if(NOT WIN32)
-	set(YC_SHARED_LIB "${PROJECT_NAME}_shared")
-	add_library("${YC_SHARED_LIB}" SHARED "${YC_SRC}")
-	set_target_properties("${YC_SHARED_LIB}" PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
-	install(TARGETS "${YC_SHARED_LIB}" LIBRARY DESTINATION lib/${PROJECT_NAME})
-endif()
-
-# Static library.
-set(YC_STATIC_LIB "${PROJECT_NAME}_static")
-add_library("${YC_STATIC_LIB}" STATIC "${YC_SRC}")
-set_target_properties("${YC_STATIC_LIB}" PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
-install(TARGETS "${YC_STATIC_LIB}" ARCHIVE DESTINATION lib/${PROJECT_NAME})
+create_pic_library("yc" "yc" "${YC_SRC}" YES)

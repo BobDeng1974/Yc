@@ -34,4 +34,15 @@
  *	******** END FILE DESCRIPTION ********
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <yc.h>
+
+void _y_assert(const char* expr_str, bool expr, const char* file, int line, const char* msg) {
+
+	if (!expr) {
+		fprintf(stderr, "Assert failed: %s\n\tExpected: %s\n\tSource: %s:%d\n", msg, expr_str, file, line);
+		abort();
+	}
+}
