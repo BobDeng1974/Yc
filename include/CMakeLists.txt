@@ -33,5 +33,5 @@ set("YC_INC"
 # Install the header files.
 install(
 	FILES "${YC_INC}"
-	DESTINATION "include/"
+	DESTINATION "include/${PROJECT_NAME}"
 )
