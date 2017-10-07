@@ -28,6 +28,7 @@ set("YC_INC"
 
 	# Add headers here.
 	"assert.h"
+	"mem.h"
 )
 
 # Install the header files.

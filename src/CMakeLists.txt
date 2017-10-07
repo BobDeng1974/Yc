@@ -28,6 +28,7 @@ set("YC_SRC"
 
 	# Put all source files here.
 	"assert.c"
+	"mem.c"
 )
 
 create_pic_library("yc" "yc" "${YC_SRC}" YES)
