@@ -24,4 +24,14 @@
 #
 #	****** END LICENSE BLOCK ******
 
-add_subdirectory("yc")
+set("YC_INC"
+
+	# Add headers here.
+	"assert.h"
+)
+
+# Install the header files.
+install(
+	FILES "${YC_INC}"
+	DESTINATION "include/${PROJECT_NAME}"
+)
