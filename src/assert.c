@@ -37,7 +37,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <yc.h>
+#include <yc/assert.h>
 
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg) {
 
