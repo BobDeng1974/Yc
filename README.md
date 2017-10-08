@@ -1,6 +1,6 @@
 # Yc
 
-Yc is ***TODO: This MUST be changed***.
+Yc is a library of utilities for C.
 
 Yc is developed by [Project LFyre](http://lfyre.org/).
 
