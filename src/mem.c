@@ -78,6 +78,14 @@ void* yrecalloc(void* ptr, size_t size) {
 	return result;
 }
 
+size_t yxmalloc(void* ptr, size_t newsize) {
+	return xallocx(ptr, newsize, 0, JEMALLOC_FLAGS_NONE);
+}
+
+size_t yxcalloc(void* ptr, size_t newsize) {
+	return xallocx(ptr, newsize, 0, JEMALLOC_FLAGS_CALLOC);
+}
+
 size_t ynalloc(size_t size) {
 	return nallocx(size, JEMALLOC_FLAGS_NONE);
 }
