@@ -52,6 +52,9 @@ void _yassert(const char* expr_str, bool expr, const char* file, int line, const
 
 #ifndef NDEBUG
 #	define __DEBUG__
+#endif
+
+#if !defined(NDEBUG) || defined(__YASSERT__)
 #	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, Msg)
 #else
 #	define yassert(Expr, Msg) ;
