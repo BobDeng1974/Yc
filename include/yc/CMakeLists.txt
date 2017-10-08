@@ -24,15 +24,12 @@
 #
 #	****** END LICENSE BLOCK ******
 
-set("YC_INC"
-
-	# Add headers here.
-	"assert.h"
-	"mem.h"
-)
-
 # Install the header files.
 install(
-	FILES "${YC_INC}"
+	FILES
+	"assert.h"
+	"mem.h"
+
+
 	DESTINATION "include/${PROJECT_NAME}"
 )

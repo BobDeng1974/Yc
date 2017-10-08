@@ -31,4 +31,21 @@ set("YC_SRC"
 	"mem.c"
 )
 
-create_pic_library("yc" "yc" "${YC_SRC}" YES)
+
+find_library(DL dl "/usr/lib" "/usr/local/lib")
+find_library(PTHREAD pthread PATHS "/usr/lib" "/usr/local/lib")
+find_library(JEMALLOC_PIC NAMES libjemalloc_pic.a jemalloc PATHS "/usr/lib" "/usr/local/lib")
+
+set(YC_SHARED "${PROJECT_NAME}_shared")
+set(YC_STATIC "${PROJECT_NAME}_static")
+set(YC_PIC "${PROJECT_NAME}_pic")
+
+create_all_libraries(
+	"${YC_SHARED}" "${YC_STATIC}" "${YC_PIC}"
+	"${PROJECT_NAME}" "${YC_SRC}" YES
+
+	# Add required libraries here.
+	"${JEMALLOC_PIC}"
+	"${PTHREAD}"
+	"${DL}"
+)
