@@ -51,7 +51,13 @@ extern "C" {
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
 #if !defined(NDEBUG) || defined(__YASSERT__)
+
+#	ifndef __YASSERT__
+#		define __YASSERT__
+#	endif
+
 #	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, Msg)
+
 #else
 #	define yassert(Expr, Msg) ;
 #endif
