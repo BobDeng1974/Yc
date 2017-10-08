@@ -45,6 +45,9 @@ extern "C" {
 #include <stdbool.h>
 #include <stdio.h>
 
+// The macro yassert (and accompanying function _yassert) were adapted from
+// the Stack Overflow answer at https://stackoverflow.com/a/37264642/3281147.
+
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
 #ifndef NDEBUG
