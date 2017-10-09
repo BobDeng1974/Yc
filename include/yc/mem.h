@@ -135,7 +135,6 @@ size_t ysalloc(void* ptr);
 /**
  * Frees the memory at the pointer.
  * @param ptr	The memory to be freed.
- * @pre			ptr must not be NULL.
  */
 void yfree(void* ptr);
 
@@ -145,7 +144,7 @@ void yfree(void* ptr);
  * at allocation.
  * @param ptr	The memory to be freed.
  * @param size	The allocated size of the memory.
- * @pre			ptr must not be NULL.
+ * @pre			size must not be zero if ptr is not NULL.
  */
 void ysfree(void* ptr, size_t size);
 
