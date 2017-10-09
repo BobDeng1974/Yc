@@ -36,17 +36,25 @@
 
 #include <jemalloc/jemalloc.h>
 
+#include <yc/assert.h>
 #include <yc/mem.h>
 
+const char* yptrNullMsg = "ptr must not be NULL";
+const char* ysizeZeroMsg = "size must not be zero";
+
 void* ymalloc(size_t size) {
+	yassert(size != 0, ysizeZeroMsg);
 	return mallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
 void* ycalloc(size_t size) {
+	yassert(size != 0, ysizeZeroMsg);
 	return mallocx(size, JEMALLOC_FLAGS_CALLOC);
 }
 
 void* yrealloc(void* ptr, size_t size) {
+
+	yassert(size != 0, ysizeZeroMsg);
 
 	void* result;
 
@@ -70,6 +78,8 @@ void* yrealloc(void* ptr, size_t size) {
 
 void* yrecalloc(void* ptr, size_t size) {
 
+	yassert(size != 0, ysizeZeroMsg);
+
 	void* result;
 
 	if (ptr != NULL) {
@@ -90,26 +100,35 @@ void* yrecalloc(void* ptr, size_t size) {
 	return result;
 }
 
-size_t yxmalloc(void* ptr, size_t newsize) {
-	return xallocx(ptr, newsize, 0, JEMALLOC_FLAGS_NONE);
+size_t yxmalloc(void* ptr, size_t size) {
+	yassert(size != 0, ysizeZeroMsg);
+	yassert(ptr != NULL, yptrNullMsg);
+	return xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 }
 
-size_t yxcalloc(void* ptr, size_t newsize) {
-	return xallocx(ptr, newsize, 0, JEMALLOC_FLAGS_CALLOC);
+size_t yxcalloc(void* ptr, size_t size) {
+	yassert(size != 0, ysizeZeroMsg);
+	yassert(ptr != NULL, yptrNullMsg);
+	return xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 }
 
 size_t ynalloc(size_t size) {
+	yassert(size != 0, ysizeZeroMsg);
 	return nallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
 size_t ysalloc(void* ptr) {
+	yassert(ptr != NULL, yptrNullMsg);
 	return sallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
 void yfree(void* ptr) {
+	yassert(ptr != NULL, yptrNullMsg);
 	dallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
 void ysfree(void* ptr, size_t size) {
+	yassert(ptr != NULL, yptrNullMsg);
+	yassert(size != 0, ysizeZeroMsg);
 	sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 }

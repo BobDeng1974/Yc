@@ -51,6 +51,7 @@ extern "C" {
  * Allocates at least size bytes of memory and returns a pointer to it.
  * @param size	The amount of memory in bytes to allocate.
  * @return		A void pointer to the allocated memory.
+ * @pre			size must not be zero.
  */
 void* ymalloc(size_t size);
 
@@ -59,6 +60,7 @@ void* ymalloc(size_t size);
  * and returns a pointer to the allocated memory.
  * @param size	The amount of memory in bytes to allocate.
  * @return		A void pointer to the allocated memory.
+ * @pre			size must not be zero.
  */
 void* ycalloc(size_t size);
 
@@ -70,6 +72,7 @@ void* ycalloc(size_t size);
  * @param ptr	A pointer to the memory to reallocate.
  * @param size	The expected size of the reallocation.
  * @return		A pointer to the allocated memory.
+ * @pre			size must not be zero.
  */
 void* yrealloc(void* ptr, size_t size);
 
@@ -81,6 +84,7 @@ void* yrealloc(void* ptr, size_t size);
  * @param ptr	A pointer to the memory to reallocate.
  * @param size	The expected size of the reallocation.
  * @return		A pointer to the allocated memory.
+ * @pre			size must not be zero.
  */
 void* yrecalloc(void* ptr, size_t size);
 
@@ -88,11 +92,13 @@ void* yrecalloc(void* ptr, size_t size);
  * Attempts to resize the memory pointed to by ptr to be newsize bytes.
  * If it doesn't succeed, it returns the old size in bytes. If it does
  * succeed, it returns the new size in bytes.
- * @param ptr		A pointer to the memory to resize.
- * @param newsize	The expected new size of the memory in bytes.
- * @return			The new size of the memory.
+ * @param ptr	A pointer to the memory to resize.
+ * @param size	The expected new size of the memory in bytes.
+ * @return		The new size of the memory.
+ * @pre			ptr must not be NULL.
+ * @pre			size must not be zero.
  */
-size_t yxmalloc(void* ptr, size_t newsize);
+size_t yxmalloc(void* ptr, size_t size);
 
 
 /**
@@ -100,11 +106,13 @@ size_t yxmalloc(void* ptr, size_t newsize);
  * It also zeroes any new allocated memory. If it doesn't succeed, it
  * returns the old size in bytes. If it does succeed, it returns the
  * new size in bytes.
- * @param ptr		A pointer to the memory to resize.
- * @param newsize	The expected new size of the memory in bytes.
- * @return			The new size of the memory.
+ * @param ptr	A pointer to the memory to resize.
+ * @param size	The expected new size of the memory in bytes.
+ * @return		The new size of the memory.
+ * @pre			ptr must not be NULL.
+ * @pre			size must not be zero.
  */
-size_t yxcalloc(void* ptr, size_t newsize);
+size_t yxcalloc(void* ptr, size_t size);
 
 /**
  * Performs the real size calculation that ymalloc and ycalloc would
@@ -112,6 +120,7 @@ size_t yxcalloc(void* ptr, size_t newsize);
  * would actually allocate.
  * @param size	The size to run the allocation size calculation on.
  * @return		The size that ymalloc and ycalloc would actually allocate.
+ * @pre			size must not be zero.
  */
 size_t ynalloc(size_t size);
 
@@ -119,12 +128,14 @@ size_t ynalloc(size_t size);
  * Returns the real size of the memory allocation at the provided pointer.
  * @param ptr	The memory whose real allocated size will be returned.
  * @return		The real allocated size of the provided memory.
+ * @pre			ptr must not be NULL.
  */
 size_t ysalloc(void* ptr);
 
 /**
  * Frees the memory at the pointer.
  * @param ptr	The memory to be freed.
+ * @pre			ptr must not be NULL.
  */
 void yfree(void* ptr);
 
@@ -134,6 +145,7 @@ void yfree(void* ptr);
  * at allocation.
  * @param ptr	The memory to be freed.
  * @param size	The allocated size of the memory.
+ * @pre			ptr must not be NULL.
  */
 void ysfree(void* ptr, size_t size);
 
