@@ -50,13 +50,19 @@ void* yrealloc(void* ptr, size_t size) {
 
 	void* result;
 
-	size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
+	if (ptr != NULL) {
 
-	if (newlen == size) {
-		result = ptr;
+		size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
+
+		if (newlen == size) {
+			result = ptr;
+		}
+		else {
+			result = rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
+		}
 	}
 	else {
-		result = rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
+		result = mallocx(size, JEMALLOC_FLAGS_NONE);
 	}
 
 	return result;
@@ -66,13 +72,19 @@ void* yrecalloc(void* ptr, size_t size) {
 
 	void* result;
 
-	size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
+	if (ptr != NULL) {
 
-	if (newlen == size) {
-		result = ptr;
+		size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
+
+		if (newlen == size) {
+			result = ptr;
+		}
+		else {
+			result = rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
+		}
 	}
 	else {
-		result = rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
+		result = mallocx(size, JEMALLOC_FLAGS_CALLOC);
 	}
 
 	return result;
