@@ -48,6 +48,14 @@ extern "C" {
 #define JEMALLOC_FLAGS_CALLOC MALLOCX_ZERO
 
 /**
+ * @defgroup memory mem.h
+ * Module defining a standard API for memory management.
+ * It is intended to hide the details of Jemalloc, the
+ * allocator used in all Project LFyre software.
+ * @{
+ */
+
+/**
  * Allocates at least size bytes of memory and returns a pointer to it.
  * @param size	The amount of memory in bytes to allocate.
  * @return		A void pointer to the allocated memory.
@@ -56,8 +64,8 @@ extern "C" {
 void* ymalloc(size_t size);
 
 /**
- * Allocates at least size bytes of memory, zeros the memory,
- * and returns a pointer to the allocated memory.
+ * Allocates at least num * size bytes of memory, zeros the
+ * memory, and returns a pointer to the allocated memory.
  * @param num	The number of elements to allocate.
  * @param size	The amount of memory, per element, in bytes
  *				to allocate.
@@ -117,11 +125,12 @@ size_t yxmalloc(void* ptr, size_t size);
 size_t yxcalloc(void* ptr, size_t size);
 
 /**
- * Performs the real size calculation that ymalloc and ycalloc would
- * for the provided size, and returns the size that ymalloc and ycalloc
- * would actually allocate.
+ * Performs the real size calculation that ymalloc() and ycalloc()
+ * would for the provided size, and returns the size that ymalloc()
+ * and ycalloc() would actually allocate.
  * @param size	The size to run the allocation size calculation on.
- * @return		The size that ymalloc and ycalloc would actually allocate.
+ * @return		The size that ymalloc() and ycalloc() would actually
+ *				allocate.
  * @pre			size must not be zero.
  */
 size_t ynalloc(size_t size);
@@ -149,6 +158,10 @@ void yfree(void* ptr);
  * @pre			size must not be zero if ptr is not NULL.
  */
 void ysfree(void* ptr, size_t size);
+
+/**
+ * @}
+ */
 
 #ifdef __cplusplus
 }

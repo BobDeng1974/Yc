@@ -1,4 +1,4 @@
-/**
+/*
  *	***** BEGIN LICENSE BLOCK *****
  *
  *	Copyright 2017 Project LFyre
@@ -37,7 +37,7 @@
 #ifndef YC_H
 #define YC_H
 
-/* For C++ compatibility */
+/* For C++ compatibility. */
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -48,19 +48,44 @@ extern "C" {
 // The macro yassert (and accompanying function _yassert) were adapted from
 // the Stack Overflow answer at https://stackoverflow.com/a/37264642/3281147.
 
+/**
+ * @defgroup assert assert.h
+ * Module with assert utilities.
+ * @{
+ */
+
+/**
+ * Function that handles the assert.
+ * @param expr_str	The expression turned into a string.
+ * @param expr		The expression.
+ * @param file		The file name where the assert is.
+ * @param line		The line number where the asert is.
+ * @param msg		The message to display on assert failure.
+ */
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
 #if !defined(NDEBUG) || defined(__YASSERT__)
 
 #	ifndef __YASSERT__
+
+/**
+ * A macro that is defined when yassert is functional.
+ */
 #		define __YASSERT__
 #	endif
 
+/**
+ * An assert macro to make the printing prettier than the default assert macro.
+ */
 #	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, Msg)
 
 #else
 #	define yassert(Expr, Msg) ;
 #endif
+
+/**
+ * @}
+ */
 
 #ifdef __cplusplus
 }
