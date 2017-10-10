@@ -24,22 +24,21 @@
 #
 #	****** END LICENSE BLOCK ******
 
-cmake_minimum_required(VERSION 3.0)
+option(BUILD_DOCS "Build documentation" OFF)
 
-project(yc C)
+if(BUILD_DOCS)
 
-# Necessary to suppress a useless warning with QtCreator.
-set(ignoreMe "${QT_QMAKE_EXECUTABLE}")
+	find_package(Doxygen)
 
-set("YC_DOCS_DIR" "docs")
-set("YC_INCLUDE_DIR" "include")
-set("YC_SRC_DIR" "src")
+	if(NOT DOXYGEN_FOUND)
+		message(WARNING "Doxygen not found, unable to generate documentation")
+	else()
 
-add_subdirectory("cmake")
-
-add_subdirectory("${YC_DOCS_DIR}")
-
-include_directories("${YC_INCLUDE_DIR}")
-add_subdirectory("${YC_INCLUDE_DIR}")
-
-add_subdirectory("${YC_SRC_DIR}")
+		configure_file(doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/doxyfile @ONLY)
+		add_custom_target(doc COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/doxyfile"
+			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			COMMENT "Generating API documentation with Doxygen"
+			VERBATIM
+		)
+	endif()
+endif()
