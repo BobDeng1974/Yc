@@ -58,11 +58,13 @@ void* ymalloc(size_t size);
 /**
  * Allocates at least size bytes of memory, zeros the memory,
  * and returns a pointer to the allocated memory.
- * @param size	The amount of memory in bytes to allocate.
+ * @param num	The number of elements to allocate.
+ * @param size	The amount of memory, per element, in bytes
+ *				to allocate.
  * @return		A void pointer to the allocated memory.
  * @pre			size must not be zero.
  */
-void* ycalloc(size_t size);
+void* ycalloc(size_t num, size_t size);
 
 /**
  * Reallocates the memory at ptr to be at least size bytes and

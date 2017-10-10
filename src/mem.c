@@ -47,9 +47,9 @@ void* ymalloc(size_t size) {
 	return mallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
-void* ycalloc(size_t size) {
+void* ycalloc(size_t num, size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
-	return mallocx(size, JEMALLOC_FLAGS_CALLOC);
+	return mallocx(num * size, JEMALLOC_FLAGS_CALLOC);
 }
 
 void* yrealloc(void* ptr, size_t size) {
