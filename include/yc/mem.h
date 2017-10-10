@@ -44,11 +44,22 @@ extern "C" {
 
 #include <jemalloc/jemalloc.h>
 
+/**
+ * @file mem.h
+ */
+
+/**
+ * Used in malloc-like functions; no zeroing.
+ */
 #define JEMALLOC_FLAGS_NONE 0
+
+/**
+ * Used in calloc-like functions; it has zeroing.
+ */
 #define JEMALLOC_FLAGS_CALLOC MALLOCX_ZERO
 
 /**
- * @defgroup memory mem.h
+ * @defgroup memory memory
  * A standard API for memory management. It is
  * intended to hide the details of Jemalloc, the
  * allocator used in all Project LFyre software.

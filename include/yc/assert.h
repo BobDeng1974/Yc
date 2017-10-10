@@ -45,11 +45,15 @@ extern "C" {
 #include <stdbool.h>
 #include <stdio.h>
 
+/**
+ * @file assert.h
+ */
+
 // The macro yassert (and accompanying function _yassert) were adapted from
 // the Stack Overflow answer at https://stackoverflow.com/a/37264642/3281147.
 
 /**
- * @defgroup assert assert.h
+ * @defgroup assert assert
  * @brief Assert utilities.
  * @{
  */
