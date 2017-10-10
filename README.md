@@ -25,10 +25,10 @@ Yc uses the git workflow described in
 Developers who want to contribute to Yc are encouraged to read that post
 carefully.
 
-For feature branches, it uses "`rebase` + `merge --no--ff`" (option 3). It also
-uses a `master`/`release` split. (Main development is on `master`, and `release`
-just points to the latest tagged release to make it easy for users to get the
-latest release.)
+For feature branches, it uses `rebase + merge --no--ff` (option 3). It also uses
+a `master`/`release` split. (Main development is on `master`, and `release` just
+points to the latest tagged release to make it easy for users to get the latest
+release.)
 
 Yc includes scripts and a `.gitconfig` that helps manage the workflow. New
 contributors should familiarize themselves with them.
