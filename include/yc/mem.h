@@ -1,4 +1,4 @@
-/**
+/*
  *	***** BEGIN LICENSE BLOCK *****
  *
  *	Copyright 2017 Project LFyre
@@ -49,8 +49,8 @@ extern "C" {
 
 /**
  * @defgroup memory mem.h
- * Module defining a standard API for memory management.
- * It is intended to hide the details of Jemalloc, the
+ * A standard API for memory management. It is
+ * intended to hide the details of Jemalloc, the
  * allocator used in all Project LFyre software.
  * @{
  */

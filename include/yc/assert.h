@@ -50,17 +50,16 @@ extern "C" {
 
 /**
  * @defgroup assert assert.h
- * Module with assert utilities.
+ * @brief Assert utilities.
  * @{
  */
 
-/**
- * Function that handles the assert.
- * @param expr_str	The expression turned into a string.
- * @param expr		The expression.
- * @param file		The file name where the assert is.
- * @param line		The line number where the asert is.
- * @param msg		The message to display on assert failure.
+/**	@brief Function that handles the assert.
+ *	@param expr_str	The expression turned into a string.
+ *	@param expr		The expression.
+ *	@param file		The file name where the assert is.
+ *	@param line		The line number where the asert is.
+ *	@param msg		The message to display on assert failure.
  */
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
