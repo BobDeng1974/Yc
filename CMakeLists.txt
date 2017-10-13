@@ -31,6 +31,14 @@ project(yc C)
 # Necessary to suppress a useless warning with QtCreator.
 set(ignoreMe "${QT_QMAKE_EXECUTABLE}")
 
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Release)
+endif()
+
+if(NOT "${CMAKE_BUILD_TYPE}" MATCHES "Debug")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -flto")
+endif()
+
 set("YC_DOCS_DIR" "docs")
 set("YC_INCLUDE_DIR" "include")
 set("YC_SRC_DIR" "src")
