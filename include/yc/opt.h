@@ -72,6 +72,33 @@ extern "C" {
  * or for security reasons.
  */
 
+/**
+ * @def ypure
+ * A macro defining an attribute that can be used if a function only reads its
+ * arguments and global variables and does not modify state.
+ */
+
+/**
+ * @def yconst
+ * A macro like @ref ypure except that the function does not even touch globals.
+ */
+
+/**
+ * @def ynoretalias
+ * An attribute that the return value of the function does not alias. Useful for
+ * malloc-like functions.
+ */
+
+/**
+ * @def ynonnull(argidx, ...)
+ * An attribute that says that the listed args are not NULL.
+ */
+
+/**
+ * @def ynoreturn
+ * An attribute that says that the function does not return.
+ */
+
 #ifdef __clang__
 
 #	if __has_attribute(optnone)
@@ -92,11 +119,46 @@ extern "C" {
 #		define ynoinline
 #	endif // __has_attribute(noinline)
 
+#	if __has_attribute(pure)
+#		define ypure __attribute__((pure))
+#	else
+#		define ypure
+#	endif
+
+#	if __has_attribute(const)
+#		define yconst __attribute__((const))
+#	else
+#		define yconst
+#	endif
+
+#	if __has_attribute(malloc)
+#		define ynoretalias __attribute__((malloc))
+#	else
+#		define ynoretalias
+#	endif
+
+#	if __has_attribute(nonnull)
+#		define ynonnull(argidx, ...) __attribute__((nonnull(__VA_ARGS__)))
+#	else
+#		define ynonnull(argidx, ...)
+#	endif
+
+#	if __has_attribute(noreturn)
+#		define ynoreturn __attribute__((noreturn))
+#	else
+#		define ynoreturn
+#	endif
+
 #else // __clang__
 
 #	define yoptnone
 #	define yinline
 #	define ynoinline
+#	define ypure
+#	define yconst
+#	define ynoretalias
+#	define ynonnull(argidx, ...)
+#	define ynoreturn
 
 #endif // __clang__
 
