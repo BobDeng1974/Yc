@@ -177,8 +177,8 @@ extern "C" {
 #	define ynoretalias
 #	define ynonnull(argidx, ...)
 #	define ynoreturn
-#	define ylikely(expr)
-#	define yunlikely(expr)
+#	define ylikely(expr)   (expr)
+#	define yunlikely(expr) (expr)
 
 #endif // __clang__
 
