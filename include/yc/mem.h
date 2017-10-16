@@ -49,6 +49,14 @@ extern "C" {
  */
 
 /**
+ * @defgroup memory memory
+ * A standard API for memory management. It is
+ * intended to hide the details of Jemalloc, the
+ * allocator used in all Project LFyre software.
+ * @{
+ */
+
+/**
  * Used in malloc-like functions; no zeroing.
  */
 #define JEMALLOC_FLAGS_NONE 0
@@ -57,14 +65,6 @@ extern "C" {
  * Used in calloc-like functions; it has zeroing.
  */
 #define JEMALLOC_FLAGS_CALLOC MALLOCX_ZERO
-
-/**
- * @defgroup memory memory
- * A standard API for memory management. It is
- * intended to hide the details of Jemalloc, the
- * allocator used in all Project LFyre software.
- * @{
- */
 
 /**
  * Allocates at least size bytes of memory and returns a pointer to it.
