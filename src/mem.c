@@ -38,6 +38,7 @@
 
 #include <yc/assert.h>
 #include <yc/mem.h>
+#include <yc/opt.h>
 
 const char* yptrNullMsg = "ptr must not be NULL";
 const char* ysizeZeroMsg = "size must not be zero";
