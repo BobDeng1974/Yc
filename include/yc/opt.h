@@ -163,8 +163,8 @@ extern "C" {
 #		define ylikely(expr)   __builtin_expect((expr), 1)
 #		define yunlikely(expr) __builtin_expect((expr), 0)
 #	else
-#		define ylikely(expr)
-#		define yunlikely(expr)
+#		define ylikely(expr)   (expr)
+#		define yunlikely(expr) (expr)
 #	endif
 
 #else // __clang__
