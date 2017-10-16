@@ -67,19 +67,23 @@ extern "C" {
  */
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
 
+/**
+ * @def __YASSERT__
+ *  A macro that is defined when yassert is functional.
+ */
+
+/**
+  @def yassert(Expr, Msg)
+ * An assert macro to make the printing prettier than the default assert macro.
+ * It evaluates @a Expr and it is false, it prints @a Msg along with other info.
+ */
+
 #if !defined(NDEBUG) || defined(__YASSERT__)
 
 #	ifndef __YASSERT__
-
-/**
- * A macro that is defined when yassert is functional.
- */
 #		define __YASSERT__
 #	endif
 
-/**
- * An assert macro to make the printing prettier than the default assert macro.
- */
 #	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, Msg)
 
 #else
