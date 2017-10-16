@@ -99,6 +99,16 @@ extern "C" {
  * An attribute that says that the function does not return.
  */
 
+/**
+ * @def ylikely(expr)
+ * A macro to tell the compiler that @a expr is likely to be true.
+ */
+
+/**
+ * @def yunlikely(expr)
+ * A macro to tell the compiler that @a expr is likely to be false.
+ */
+
 #ifdef __clang__
 
 #	if __has_attribute(optnone)
@@ -149,6 +159,14 @@ extern "C" {
 #		define ynoreturn
 #	endif
 
+#	if __has_builtin(__builtin_expect)
+#		define ylikely(expr)   __builtin_expect((expr), 1)
+#		define yunlikely(expr) __builtin_expect((expr), 0)
+#	else
+#		define ylikely(expr)
+#		define yunlikely(expr)
+#	endif
+
 #else // __clang__
 
 #	define yoptnone
@@ -159,6 +177,8 @@ extern "C" {
 #	define ynoretalias
 #	define ynonnull(argidx, ...)
 #	define ynoreturn
+#	define ylikely(expr)
+#	define yunlikely(expr)
 
 #endif // __clang__
 
