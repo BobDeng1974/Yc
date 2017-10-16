@@ -100,6 +100,11 @@ extern "C" {
  */
 
 /**
+ * @def ypacked
+ * An attribute that tells the compiler to pack the struct, enum, or union.
+ */
+
+/**
  * @def ylikely(expr)
  * A macro to tell the compiler that @a expr is likely to be true.
  */
@@ -159,6 +164,12 @@ extern "C" {
 #		define ynoreturn
 #	endif
 
+#	if __has_attribute(packed)
+#		define ypacked __attribute__((packed))
+#	else
+#		define ypacked
+#	endif
+
 #	if __has_builtin(__builtin_expect)
 #		define ylikely(expr)   __builtin_expect(!!(expr), 1)
 #		define yunlikely(expr) __builtin_expect(!!(expr), 0)
@@ -177,6 +188,7 @@ extern "C" {
 #	define ynoretalias
 #	define ynonnull(argidx, ...)
 #	define ynoreturn
+#	define ypacked
 #	define ylikely(expr)   (expr)
 #	define yunlikely(expr) (expr)
 
