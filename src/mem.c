@@ -125,14 +125,14 @@ size_t ysalloc(void* ptr) {
 
 void yfree(void* ptr) {
 
-	if (ptr) {
+	if (ylikely(ptr != NULL)) {
 		dallocx(ptr, JEMALLOC_FLAGS_NONE);
 	}
 }
 
 void ysfree(void* ptr, size_t size) {
 
-	if (ptr) {
+	if (ylikely(ptr != NULL)) {
 		yassert(size != 0, ysizeZeroMsg);
 		sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 	}
