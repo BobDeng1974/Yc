@@ -29,7 +29,7 @@ install(
 	FILES
 	"assert.h"
 	"mem.h"
-
+	"opt.h"
 
 	DESTINATION "include/${PROJECT_NAME}"
 )
