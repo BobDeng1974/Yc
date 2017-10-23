@@ -38,10 +38,11 @@
 #include <stdlib.h>
 
 #include <yc/assert.h>
+#include <yc/opt.h>
 
 void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg) {
 
-	if (!expr) {
+	if (yunlikely(!expr)) {
 		fprintf(stderr, "\nAssert failed: %s\n\n", msg);
 		fprintf(stderr, "    Expected:  %s\n\n", expr_str);
 		fprintf(stderr, "    Source:    %s:%d\n\n", file, line);
