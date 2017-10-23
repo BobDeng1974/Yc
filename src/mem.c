@@ -40,8 +40,8 @@
 #include <yc/mem.h>
 #include <yc/opt.h>
 
-const char* yptrNullMsg = "ptr must not be NULL";
-const char* ysizeZeroMsg = "size must not be zero";
+const char* yptrNullMsg = "ptr is NULL";
+const char* ysizeZeroMsg = "size is 0";
 
 void* ymalloc(size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
