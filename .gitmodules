@@ -1,4 +1,4 @@
 [submodule "cmake"]
 	path = cmake
-	url = git@github.com:ProjectLFyre/YCMake.git
+	url = git@github.com:YzenaUsa/YCMake.git
 	branch = master
