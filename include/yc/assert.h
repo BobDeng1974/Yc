@@ -58,14 +58,16 @@ extern "C" {
  * @{
  */
 
-/**	@brief Function that handles the assert.
- *	@param expr_str	The expression turned into a string.
- *	@param expr		The expression.
- *	@param file		The file name where the assert is.
- *	@param line		The line number where the asert is.
- *	@param msg		The message to display on assert failure.
+/**
+ * Function that handles the assert.
+ * @param expr_str	The expression turned into a string.
+ * @param expr		The expression.
+ * @param file		The file name where the assert is.
+ * @param line		The line number where the asert is.
+ * @param func		The function where the assert is.
+ * @param msg		The message to display on assert failure.
  */
-void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* msg);
+void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* func, const char* msg);
 
 /**
  * @def __YASSERT__
@@ -84,7 +86,7 @@ void _yassert(const char* expr_str, bool expr, const char* file, int line, const
 #		define __YASSERT__
 #	endif
 
-#	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, Msg)
+#	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, __func__, Msg)
 
 #else
 #	define yassert(Expr, Msg) ;
