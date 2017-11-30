@@ -24,9 +24,9 @@
 #
 #	****** END LICENSE BLOCK ******
 
-option(BUILD_DOCS "Build documentation" OFF)
+option(YC_DOCS_BUILD "Build documentation" OFF)
 
-if(BUILD_DOCS)
+if(YC_DOCS_BUILD)
 
 	find_package(Doxygen)
 
@@ -34,13 +34,24 @@ if(BUILD_DOCS)
 		message(WARNING "Doxygen not found, unable to generate documentation")
 	else()
 
+		option(YC_DOCS_INSTALL "Install documentation" OFF)
+
+		option(YC_DOCS_BUILD_INTERNAL "Build internal documentation" OFF)
+
+		if(YC_DOCS_BUILD_INTERNAL)
+			set(YC_DOCS_INTERNAL_DIR "${CMAKE_SOURCE_DIR}/src")
+		else()
+			set(YC_DOCS_INTERNAL_DIR "")
+		endif()
+
 		configure_file(doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/doxyfile @ONLY)
 		add_custom_target(doc COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/doxyfile"
 			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 			COMMENT "Generating API documentation with Doxygen"
-			VERBATIM
-		)
+			VERBATIM)
 
-		install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html/ DESTINATION share/doc/${PROJECT_NAME})
+		if(YC_DOCS_INSTALL)
+			install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html/ DESTINATION share/doc/${PROJECT_NAME})
+		endif()
 	endif()
 endif()
