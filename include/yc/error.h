@@ -58,6 +58,8 @@ extern "C" {
  * @def yerror
  * A macro to mark error handling. This macro should be put
  * around an expression that, if true, represents an error.
+ * @param expr	An expression that, if true (nonzero), means
+ 				an error occurred.
  */
 #define yerror yunlikely
 
