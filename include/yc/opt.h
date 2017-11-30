@@ -107,11 +107,13 @@ extern "C" {
 /**
  * @def ylikely(expr)
  * A macro to tell the compiler that @a expr is likely to be true.
+ * @param expr	An expression that is likely to be nonzero (true).
  */
 
 /**
  * @def yunlikely(expr)
  * A macro to tell the compiler that @a expr is likely to be false.
+ * @param expr	An expression that is likely to be zero (false).
  */
 
 #ifdef __clang__

@@ -55,7 +55,7 @@ extern "C" {
  */
 
 /**
- * @def yerror
+ * @def yerror(expr)
  * A macro to mark error handling. This macro should be put
  * around an expression that, if true, represents an error.
  * @param expr	An expression that, if true (nonzero), means
