@@ -53,5 +53,7 @@ if(YC_DOCS_BUILD)
 		if(YC_DOCS_INSTALL)
 			install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html/ DESTINATION share/doc/${PROJECT_NAME})
 		endif()
+
 	endif()
+
 endif()
