@@ -30,6 +30,7 @@ install(
 	"assert.h"
 	"mem.h"
 	"opt.h"
+	"error.h"
 
 	DESTINATION "include/${PROJECT_NAME}"
 )
