@@ -121,7 +121,7 @@ void* yrecalloc(void* ptr, size_t size) yinline ynoretalias;
  * @pre			ptr must not be NULL.
  * @pre			size must not be zero.
  */
-size_t yxmalloc(void* ptr ynonnull, size_t size) yinline;
+size_t yxmalloc(ynonnull void* ptr, size_t size) yinline;
 
 
 /**
@@ -135,7 +135,7 @@ size_t yxmalloc(void* ptr ynonnull, size_t size) yinline;
  * @pre			ptr must not be NULL.
  * @pre			size must not be zero.
  */
-size_t yxcalloc(void* ptr ynonnull, size_t size) yinline;
+size_t yxcalloc(ynonnull void* ptr, size_t size) yinline;
 
 /**
  * Performs the real size calculation that ymalloc() and ycalloc()
@@ -154,13 +154,13 @@ size_t ynalloc(size_t size) ypure;
  * @return		The real allocated size of the provided memory.
  * @pre			ptr must not be NULL.
  */
-size_t ysalloc(void* ptr ynonnull) ypure;
+size_t ysalloc(ynonnull void* ptr) ypure;
 
 /**
  * Frees the memory at the pointer.
  * @param ptr	The memory to be freed.
  */
-void yfree(void* ptr ynonnull) yinline;
+void yfree(ynonnull void* ptr) yinline;
 
 /**
  * Frees the memory at the pointer. The provided size is used
@@ -170,7 +170,7 @@ void yfree(void* ptr ynonnull) yinline;
  * @param size	The allocated size of the memory.
  * @pre			size must not be zero if ptr is not NULL.
  */
-void ysfree(void* ynonnull ptr, size_t size) yinline;
+void ysfree(ynonnull void* ptr, size_t size) yinline;
 
 /**
  * @}
