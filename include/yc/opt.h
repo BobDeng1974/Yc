@@ -42,6 +42,8 @@
 extern "C" {
 #endif
 
+#include <yc/utils.h>
+
 /**
  * @file opt.h
  */
@@ -119,58 +121,58 @@ extern "C" {
 #ifdef __clang__
 
 #	if __has_attribute(optnone)
-#		define yoptnone __attribute__((optnone))
+#		define yoptnone yattr(optnone)
 #	else
 #		define yoptnone
 #	endif // __has_attribute(optnone)
 
 #	if defined(LINK_TIME_OPTIMISATION) && !defined(SAVE_ON_FLASH) && defined(NDEBUG) && __has_attribute(always_inline)
-#		define yinline __attribute__((always_inline))
+#		define yinline yattr(always_inline)
 #	else
 #		define yinline
 #	endif // defined(LINK_TIME_OPTIMISATION)
 
 #	if __has_attribute(noinline)
-#		define ynoinline __attribute__((noinline))
+#		define ynoinline yattr(noinline)
 #	else
 #		define ynoinline
 #	endif // __has_attribute(noinline)
 
 #	if __has_attribute(pure)
-#		define ypure __attribute__((pure))
+#		define ypure yattr(pure)
 #	else
 #		define ypure
-#	endif
+#	endif // __has_attribute(pure)
 
 #	if __has_attribute(const)
-#		define yconst __attribute__((const))
+#		define yconst yattr(const)
 #	else
 #		define yconst
-#	endif
+#	endif // __has_attribute(const)
 
 #	if __has_attribute(malloc)
-#		define ynoretalias __attribute__((malloc))
+#		define ynoretalias yattr(malloc)
 #	else
 #		define ynoretalias
-#	endif
+#	endif // __has_attribute(malloc)
 
 #	if __has_attribute(nonnull)
-#		define ynonnull(argidx, ...) __attribute__((nonnull(__VA_ARGS__)))
+#		define ynonnull(argidx, ...) yattr(nonnull(__VA_ARGS__))
 #	else
 #		define ynonnull(argidx, ...)
-#	endif
+#	endif // __has_attribute(nonnull)
 
 #	if __has_attribute(noreturn)
-#		define ynoreturn __attribute__((noreturn))
+#		define ynoreturn yattr(noreturn)
 #	else
 #		define ynoreturn
-#	endif
+#	endif // __has_attribute(noreturn)
 
 #	if __has_attribute(packed)
-#		define ypacked __attribute__((packed))
+#		define ypacked yattr(packed)
 #	else
 #		define ypacked
-#	endif
+#	endif // __has_attribute(packed)
 
 #	if __has_builtin(__builtin_expect)
 #		define ylikely(expr)   __builtin_expect(!!(expr), 1)
@@ -178,7 +180,7 @@ extern "C" {
 #	else
 #		define ylikely(expr)   (expr)
 #		define yunlikely(expr) (expr)
-#	endif
+#	endif // __has_builtin(__builtin_expect)
 
 #else // __clang__
 

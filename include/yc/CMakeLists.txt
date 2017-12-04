@@ -28,9 +28,10 @@
 install(
 	FILES
 	"assert.h"
+	"error.h"
 	"mem.h"
 	"opt.h"
-	"error.h"
+	"utils.h"
 
 	DESTINATION "include/${PROJECT_NAME}"
 )
