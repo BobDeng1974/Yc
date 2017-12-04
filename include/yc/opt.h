@@ -92,8 +92,8 @@ extern "C" {
  */
 
 /**
- * @def ynonnull(argidx, ...)
- * An attribute that says that the listed args are not NULL.
+ * @def ynonnull
+ * An parameter attribute that says that the arg cannot be NULL.
  */
 
 /**
@@ -157,9 +157,9 @@ extern "C" {
 #	endif // __has_attribute(malloc)
 
 #	if __has_attribute(nonnull)
-#		define ynonnull(argidx, ...) yattr(nonnull(__VA_ARGS__))
+#		define ynonnull yattr(nonnull)
 #	else
-#		define ynonnull(argidx, ...)
+#		define ynonnull
 #	endif // __has_attribute(nonnull)
 
 #	if __has_attribute(noreturn)
