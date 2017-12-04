@@ -97,6 +97,11 @@ extern "C" {
  */
 
 /**
+ * @def yretnonnull
+ * An parameter attribute that says that function cannot return NULL.
+ */
+
+/**
  * @def ynoreturn
  * An attribute that says that the function does not return.
  */
@@ -162,6 +167,12 @@ extern "C" {
 #		define ynonnull
 #	endif // __has_attribute(nonnull)
 
+#	if __has_attribute(returns_nonnull)
+#		define yretnonnull yattr(returns_nonnull)
+#	else
+#		define yretnonnull
+#	endif // __has_attribute(returns_nonnull)
+
 #	if __has_attribute(noreturn)
 #		define ynoreturn yattr(noreturn)
 #	else
@@ -190,7 +201,8 @@ extern "C" {
 #	define ypure
 #	define yconst
 #	define ynoretalias
-#	define ynonnull(argidx, ...)
+#	define ynonnull
+#	define yretnonnull
 #	define ynoreturn
 #	define ypacked
 #	define ylikely(expr)   (expr)
