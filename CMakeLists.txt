@@ -30,6 +30,7 @@ project(yc C)
 
 # Necessary to suppress a useless warning with QtCreator.
 set(ignoreMe "${QT_QMAKE_EXECUTABLE}")
+set(ignoreMe "${CMAKE_CXX_COMPILER}")
 
 if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Release)
