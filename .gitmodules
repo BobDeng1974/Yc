@@ -2,3 +2,7 @@
 	path = cmake
 	url = git@github.com:YzenaTech/YCMake.git
 	branch = master
+[submodule "lib/jemalloc"]
+	path = lib/jemalloc
+	url = https://github.com/jemalloc/jemalloc.git
+	branch = master
