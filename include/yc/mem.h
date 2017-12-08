@@ -42,7 +42,7 @@
 extern "C" {
 #endif
 
-#include <jemalloc/jemalloc.h>
+#include <stddef.h>
 
 #include <yc/opt.h>
 

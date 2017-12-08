@@ -40,17 +40,19 @@
 #include <yc/mem.h>
 #include <yc/opt.h>
 
+#ifdef __YASSERT__
 const char* yptrNullMsg = "ptr is NULL";
 const char* ysizeZeroMsg = "size is 0";
+#endif
 
 void* ymalloc(size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
-	return mallocx(size, JEMALLOC_FLAGS_NONE);
+	return je_mallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
 void* ycalloc(size_t num, size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
-	return mallocx(num * size, JEMALLOC_FLAGS_CALLOC);
+	return je_mallocx(num * size, JEMALLOC_FLAGS_CALLOC);
 }
 
 void* yrealloc(void* ptr, size_t size) {
@@ -61,17 +63,17 @@ void* yrealloc(void* ptr, size_t size) {
 
 	if (ptr != NULL) {
 
-		size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
+		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 
 		if (newlen == size) {
 			result = ptr;
 		}
 		else {
-			result = rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
+			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 		}
 	}
 	else {
-		result = mallocx(size, JEMALLOC_FLAGS_NONE);
+		result = je_mallocx(size, JEMALLOC_FLAGS_NONE);
 	}
 
 	return result;
@@ -85,17 +87,17 @@ void* yrecalloc(void* ptr, size_t size) {
 
 	if (ptr != NULL) {
 
-		size_t newlen = xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
+		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 
 		if (newlen == size) {
 			result = ptr;
 		}
 		else {
-			result = rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
+			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
 		}
 	}
 	else {
-		result = mallocx(size, JEMALLOC_FLAGS_CALLOC);
+		result = je_mallocx(size, JEMALLOC_FLAGS_CALLOC);
 	}
 
 	return result;
@@ -104,36 +106,30 @@ void* yrecalloc(void* ptr, size_t size) {
 size_t yxmalloc(void* ptr, size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
 	yassert(ptr != NULL, yptrNullMsg);
-	return xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
+	return je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 }
 
 size_t yxcalloc(void* ptr, size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
 	yassert(ptr != NULL, yptrNullMsg);
-	return xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
+	return je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 }
 
 size_t ynalloc(size_t size) {
 	yassert(size != 0, ysizeZeroMsg);
-	return nallocx(size, JEMALLOC_FLAGS_NONE);
+	return je_nallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
 size_t ysalloc(void* ptr) {
 	yassert(ptr != NULL, yptrNullMsg);
-	return sallocx(ptr, JEMALLOC_FLAGS_NONE);
+	return je_sallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
 void yfree(void* ptr) {
-
-	if (ylikely(ptr != NULL)) {
-		dallocx(ptr, JEMALLOC_FLAGS_NONE);
-	}
+	je_dallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
 void ysfree(void* ptr, size_t size) {
-
-	if (ylikely(ptr != NULL)) {
-		yassert(size != 0, ysizeZeroMsg);
-		sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);
-	}
+	yassert(size != 0, ysizeZeroMsg);
+	je_sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 }

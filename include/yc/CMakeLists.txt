@@ -26,12 +26,8 @@
 
 # Install the header files.
 install(
-	FILES
-	"assert.h"
-	"error.h"
-	"mem.h"
-	"opt.h"
-	"utils.h"
+	DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 
-	DESTINATION "include/${PROJECT_NAME}"
+	DESTINATION "include"
+	FILES_MATCHING PATTERN "*.h"
 )

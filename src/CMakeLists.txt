@@ -31,21 +31,25 @@ set("YC_SRC"
 	"mem.c"
 )
 
+include_directories("${CMAKE_SOURCE_DIR}/lib/jemalloc/include")
 
 find_library(DL dl "/usr/lib" "/usr/local/lib")
 find_library(PTHREAD pthread PATHS "/usr/lib" "/usr/local/lib")
-find_library(JEMALLOC_PIC NAMES libjemalloc_pic.a jemalloc PATHS "/usr/lib" "/usr/local/lib")
 
-set(YC_SHARED "${PROJECT_NAME}_shared")
-set(YC_STATIC "${PROJECT_NAME}_static")
+set(JEMALLOC_PIC "jemalloc_pic")
+
 set(YC_PIC "${PROJECT_NAME}_pic")
 
-create_all_libraries(
-	"${YC_SHARED}" "${YC_STATIC}" "${YC_PIC}"
-	"${PROJECT_NAME}" "${YC_SRC}" YES
+create_pic_library(
+	"${YC_PIC}" "${YC_PIC}" "${YC_SRC}" NO YES
 
 	# Add required libraries here.
-	"${JEMALLOC_PIC}"
 	"${PTHREAD}"
+	"${JEMALLOC_PIC}"
 	"${DL}"
 )
+
+set(YC "${PROJECT_NAME}")
+
+merge_static_libs("${YC}")
+install(TARGETS "${YC}" ARCHIVE DESTINATION lib/)
