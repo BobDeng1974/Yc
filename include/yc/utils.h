@@ -47,10 +47,34 @@ extern "C" {
  * A macro to handle attributes.
  */
 
+/**
+ * @def yctor
+ * A macro to label as a ctor/init function
+ * (a function to run before main is called).
+ */
+
+/**
+ * @def ydtor
+ * A macro to label as a dtor/fini function
+ * (a function to run after main returns).
+ */
+
 #ifdef __clang__
 #	define yattr(s) __attribute__((s))
 #else
 #	define yattr(s)
+#endif
+
+#ifdef __clang__
+#	define yctor yattr(constructor)
+#else
+#	define yctor
+#endif
+
+#ifdef __clang__
+#	define ydtor yattr(destructor)
+#else
+#	define ydtor
 #endif
 
 #ifdef __cplusplus
