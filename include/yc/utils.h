@@ -61,19 +61,11 @@ extern "C" {
 
 #ifdef __clang__
 #	define yattr(s) __attribute__((s))
-#else
-#	define yattr(s)
-#endif
-
-#ifdef __clang__
 #	define yctor yattr(constructor)
-#else
-#	define yctor
-#endif
-
-#ifdef __clang__
 #	define ydtor yattr(destructor)
 #else
+#	define yattr(s)
+#	define yctor
 #	define ydtor
 #endif
 
