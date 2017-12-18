@@ -59,6 +59,12 @@ extern "C" {
  * (a function to run after main returns).
  */
 
+/**
+ * @def yunused
+ * A macro to label anything as unused
+ * (to silence warnings).
+ */
+
 #ifdef __clang__
 
 #	define yattr(s) __attribute__((s))
@@ -66,12 +72,16 @@ extern "C" {
 #	define yctor yattr(constructor)
 #	define ydtor yattr(destructor)
 
+#	define yunused yattr(unused)
+
 #else
 
 #	define yattr(s)
 
 #	define yctor
 #	define ydtor
+
+#	define yunused
 
 #endif
 
