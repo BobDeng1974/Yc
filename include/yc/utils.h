@@ -60,13 +60,19 @@ extern "C" {
  */
 
 #ifdef __clang__
+
 #	define yattr(s) __attribute__((s))
+
 #	define yctor yattr(constructor)
 #	define ydtor yattr(destructor)
+
 #else
+
 #	define yattr(s)
+
 #	define yctor
 #	define ydtor
+
 #endif
 
 #ifdef __cplusplus
