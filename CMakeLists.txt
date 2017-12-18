@@ -36,6 +36,8 @@ if(NOT "${CMAKE_C_COMPILER_ID}" MATCHES "Clang")
 	message(FATAL_ERROR "Clang is the only compiler supported on Linux")
 endif()
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+
 # If we are doing a release with debug
 # info, we may want to run sanitizers.
 if("${CMAKE_BUILD_TYPE}" MATCHES "RelWithDebInfo")
