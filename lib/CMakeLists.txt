@@ -86,4 +86,5 @@ set_target_properties("${JEMALLOC}"
 	INTERFACE_INCLUDE_DIRECTORIES "${JEMALLOC_INC_DIR}"
 )
 
+# Merge the library.
 merge_lib("${JEMALLOC}" "${JEMALLOC_PIC}")
