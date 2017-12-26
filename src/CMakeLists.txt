@@ -42,8 +42,9 @@ find_library(PTHREAD pthread PATHS "/usr/lib" "/usr/local/lib")
 set(JEMALLOC_PIC "jemalloc_pic")
 set(YC_PIC "${PROJECT_NAME}_pic")
 
-create_pic_library(
-	"${YC_PIC}" "${YC_PIC}" "${YC_SRC}" NO YES
+# Create the library.
+create_merge_library(
+	"${YC_PIC}" "${YC_SRC}"
 
 	# Add required libraries here.
 	"${PTHREAD}"
@@ -55,5 +56,4 @@ create_pic_library(
 set(YC "${PROJECT_NAME}")
 
 # Merge all libraries.
-merge_static_libs("${YC}")
-install(TARGETS "${YC}" ARCHIVE DESTINATION lib/)
+merge_libs("${YC}")
