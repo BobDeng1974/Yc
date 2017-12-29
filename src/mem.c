@@ -61,10 +61,14 @@ void* yrealloc(void* ptr, size_t size) {
 
 	void* result;
 
+	// If the pointer is not NULL...
 	if (ptr != NULL) {
 
+		// Try to resize in place.
 		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 
+		// If the in-place worked, set the
+		// result. Otherwise, reallocate.
 		if (newlen == size) {
 			result = ptr;
 		}
@@ -72,6 +76,8 @@ void* yrealloc(void* ptr, size_t size) {
 			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 		}
 	}
+
+	// If the pointer is NULL, just malloc.
 	else {
 		result = je_mallocx(size, JEMALLOC_FLAGS_NONE);
 	}
@@ -85,10 +91,14 @@ void* yrecalloc(void* ptr, size_t size) {
 
 	void* result;
 
+	// If the pointer is not NULL...
 	if (ptr != NULL) {
 
+		// Try to resize in place.
 		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 
+		// If the in-place worked, set the
+		// result. Otherwise, reallocate.
 		if (newlen == size) {
 			result = ptr;
 		}
@@ -96,6 +106,8 @@ void* yrecalloc(void* ptr, size_t size) {
 			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
 		}
 	}
+
+	// If the pointer is NULL, just malloc.
 	else {
 		result = je_mallocx(size, JEMALLOC_FLAGS_CALLOC);
 	}
