@@ -69,6 +69,9 @@ extern "C" {
 // For _getcwd() and _chdir().
 #include <direct.h>
 
+#define getcwd _tgetcwd
+#define chdir _tchdir
+
 #define srandom srand
 #define random rand
 
