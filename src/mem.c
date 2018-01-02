@@ -138,10 +138,25 @@ size_t ysalloc(void* ptr) {
 }
 
 void yfree(void* ptr) {
+
+	// We need to handle this.
+	if (ptr == NULL) {
+		return;
+	}
+
+	// Free the data.
 	je_dallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
 void ysfree(void* ptr, size_t size) {
+
 	yassert(size != 0, ysizeZeroMsg);
+
+	// We need to handle this.
+	if (ptr == NULL) {
+		return;
+	}
+
+	// Free the data.
 	je_sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 }

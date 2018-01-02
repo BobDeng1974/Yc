@@ -160,7 +160,7 @@ size_t ysalloc(ynonnull void* ptr) ypure;
  * Frees the memory at the pointer.
  * @param ptr	The memory to be freed.
  */
-void yfree(ynonnull void* ptr) yinline;
+void yfree(void* ptr) yinline;
 
 /**
  * Frees the memory at the pointer. The provided size is used
@@ -170,7 +170,7 @@ void yfree(ynonnull void* ptr) yinline;
  * @param size	The allocated size of the memory.
  * @pre			size must not be zero if ptr is not NULL.
  */
-void ysfree(ynonnull void* ptr, size_t size) yinline;
+void ysfree(void* ptr, size_t size) yinline;
 
 /**
  * @}
