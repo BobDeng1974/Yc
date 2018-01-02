@@ -24,6 +24,13 @@
 #
 #	****** END LICENSE BLOCK ******
 
+# Get the number of processors.
+include(ProcessorCount)
+ProcessorCount(procs)
+if (procs EQUAL 0)
+	set(procs "1")
+endif()
+
 set(JEMALLOC_AUTOGEN "jemalloc_autogen")
 set(JEMALLOC_CONFIGURE "jemalloc_configure")
 
@@ -63,7 +70,7 @@ add_dependencies("${JEMALLOC_CONFIGURE}" "${JEMALLOC_AUTOGEN}")
 # Add the jemalloc lib and copy it..
 add_custom_command(
 	OUTPUT "${JEMALLOC_LIB}"
-	COMMAND make -j4
+	COMMAND make -j${procs}
 	DEPENDS "${JEMALLOC_CONFIGURE}"
 	WORKING_DIRECTORY "${JEMALLOC_BUILD_DIR}"
 )
