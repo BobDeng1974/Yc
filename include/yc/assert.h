@@ -89,7 +89,7 @@ void _yassert(const char* expr_str, bool expr, const char* file, int line, const
 #	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, __func__, Msg)
 
 #else
-#	define yassert(Expr, Msg) ;
+#	define yassert(Expr, Msg)
 #endif
 
 /**

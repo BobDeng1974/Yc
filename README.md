@@ -16,7 +16,7 @@ Yc is not even in Alpha stage yet. This software is not ready for use.
 
 ## Language
 
-Yc is written in pure ANSI C11.
+Yc is written in pure ISO C11.
 
 ## Git Workflow
 

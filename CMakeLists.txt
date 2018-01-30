@@ -38,16 +38,23 @@ endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
 
-# If we are doing a release with debug
-# info, we may want to run sanitizers.
-if("${CMAKE_BUILD_TYPE}" MATCHES "RelWithDebInfo")
+# If we are in debug mode...
+if("${CMAKE_BUILD_TYPE}" MATCHES "Debug" OR "${CMAKE_BUILD_TYPE}" MATCHES "RelWithDegInfo")
 
 	# Create the sanitizer options.
-	option(YC_SANITIZER_MEMORY "Build with MemorySanitizer" OFF)
+	option(YC_SANITIZER_ADDRESS "Build with AddressSanitizer" ON)
 
 	# If the memory sanitizer is in use, set the flag.
-	if ("${YC_SANITIZER_MEMORY}")
-		set(YC_SANITIZER_FLAGS "-fsanitize=memory")
+	if ("${YC_SANITIZER_ADDRESS}")
+		string(CONCAT YC_SANITIZER_FLAGS " -fsanitize=address")
+	endif()
+
+	# Option to run the undefined behavior sanitizer.
+	option(YC_SANITIZER_UNDEFINED "Build with UndefinedBehaviorSanitizer" ON)
+
+	# If we want to run the undefined behavior sanitizer...
+	if(YC_SANITIZER_UNDEFINED)
+		string(CONCAT YC_SANITIZER_FLAGS " -fsanitize=undefined")
 	endif()
 
 endif()
@@ -66,26 +73,9 @@ if(DEFINED YC_SANITIZER_FLAGS)
 		"-fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-common")
 
 	# We need to set compiler *and* linker flags.
-	set(CMAKE_C_FLAGS "${YC_FLAGS}")
-	set(CMAKE_EXE_LINKER_FLAGS "${YC_FLAGS}")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${YC_FLAGS}")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${YC_FLAGS}")
 
-endif()
-
-# If we are in debug mode...
-if("${CMAKE_BUILD_TYPE}" MATCHES "Debug" OR "${CMAKE_BUILD_TYPE}" MATCHES "RelWithDegInfo")
-
-	# Option to run the undefined behavior sanitizer.
-	option(YC_SANITIZER_UNDEFINED "Build with UndefinedBehaviorSanitizer" ON)
-
-	# If we want to run the undefined behavior sanitizer...
-	if(YC_SANITIZER_UNDEFINED)
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=undefined")
-	endif()
-
-endif()
-
-# We need to set yet another compiler flag if we are using sanitizers.
-if(DEFINED YC_SANITIZER_FLAGS OR "${YC_SANITIZER_UNDEFINED}")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-sanitize-recover=all")
 endif()
 
