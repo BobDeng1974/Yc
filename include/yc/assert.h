@@ -61,15 +61,15 @@ extern "C" {
  */
 
 /**
- * Function that fails if the assert is false.
- * @param expr_str	The expression turned into a string.
- * @param expr		The expression.
- * @param file		The file name where the assert is.
- * @param line		The line number where the asert is.
- * @param func		The function where the assert is.
- * @param msg		The message to display on assert failure.
+ * Function that fails if the assert is false. This
+ * function never returns.
+ * @param expr	The expression turned into a string.
+ * @param file	The file name where the assert is.
+ * @param line	The line number where the asert is.
+ * @param func	The function where the assert is.
+ * @param msg	The message to display on assert failure.
  */
-void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg) ynoreturn;
+void _yassert_fail(const char* expr, const char* file, int line, const char* func, const char* msg) ynoreturn;
 
 /**
  * @def __YASSERT__
