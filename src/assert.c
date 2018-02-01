@@ -40,18 +40,14 @@
 #include <yc/assert.h>
 #include <yc/opt.h>
 
-void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* func, const char* msg) {
+void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg) {
 
-	// If the expression is false...
-	if (yunlikely(!expr)) {
+	// Pretty print the error and info.
+	fprintf(stderr, "\nAssert failed: %s\n\n", msg);
+	fprintf(stderr, "    Expected:  %s\n\n", expr_str);
+	fprintf(stderr, "    Source:    %s:%d\n\n", file, line);
+	fprintf(stderr, "    Function:  %s()\n\n", func);
 
-		// Pretty print the error and info.
-		fprintf(stderr, "\nAssert failed: %s\n\n", msg);
-		fprintf(stderr, "    Expected:  %s\n\n", expr_str);
-		fprintf(stderr, "    Source:    %s:%d\n\n", file, line);
-		fprintf(stderr, "    Function:  %s()\n\n", func);
-
-		// Abort.
-		abort();
-	}
+	// Abort.
+	abort();
 }

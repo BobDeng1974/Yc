@@ -45,6 +45,8 @@ extern "C" {
 #include <stdbool.h>
 #include <stdio.h>
 
+#include <yc/opt.h>
+
 /**
  * @file assert.h
  */
@@ -59,7 +61,7 @@ extern "C" {
  */
 
 /**
- * Function that handles the assert.
+ * Function that fails if the assert is false.
  * @param expr_str	The expression turned into a string.
  * @param expr		The expression.
  * @param file		The file name where the assert is.
@@ -67,7 +69,7 @@ extern "C" {
  * @param func		The function where the assert is.
  * @param msg		The message to display on assert failure.
  */
-void _yassert(const char* expr_str, bool expr, const char* file, int line, const char* func, const char* msg);
+void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg) ynoreturn;
 
 /**
  * @def __YASSERT__
@@ -86,10 +88,10 @@ void _yassert(const char* expr_str, bool expr, const char* file, int line, const
 #		define __YASSERT__
 #	endif
 
-#	define yassert(Expr, Msg) _yassert(#Expr, Expr, __FILE__, __LINE__, __func__, Msg)
+#	define yassert(Expr, Msg) ((void)((Expr) || (_yassert_fail(#Expr, __FILE__, __LINE__, __func__, (Msg)), 0)))
 
 #else
-#	define yassert(Expr, Msg)
+#	define yassert(Expr, Msg) ((void)(Expr), 0)
 #endif
 
 /**
