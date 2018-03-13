@@ -30,9 +30,6 @@ a `develop`/`master` split. (Main development is on `develop`, and `master` just
 points to the latest tagged release to make it easy for users to get the latest
 release.)
 
-Yc includes scripts and a `.gitconfig` that helps manage the workflow. New
-contributors should familiarize themselves with them.
-
 ## Commit Messages
 
 Projects under Yzena, including Yc, use the commit message guidelines laid out
