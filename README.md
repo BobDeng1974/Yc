@@ -20,8 +20,8 @@ Yc is written in pure ISO C11.
 
 ## Git Workflow
 
-Yc uses the git workflow described in
-[this post](http://endoflineblog.com/oneflow-a-git-branching-model-and-workflow).
+Yc uses the git workflow described
+[here](http://endoflineblog.com/oneflow-a-git-branching-model-and-workflow).
 Developers who want to contribute to Yc are encouraged to read that post
 carefully.
 
