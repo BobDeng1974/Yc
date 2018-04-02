@@ -1,6 +1,0 @@
-[merge]
-	ff = false
-[pull]
-	rebase = true
-[push]
-	recurseSubmodules = on-demand
