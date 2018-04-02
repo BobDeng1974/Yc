@@ -6,3 +6,7 @@
 	path = lib/jemalloc
 	url = https://github.com/jemalloc/jemalloc.git
 	branch = master
+[submodule "scripts"]
+	path = scripts
+	url = https://github.com/YzenaTech/Yscripts
+	branch = master
