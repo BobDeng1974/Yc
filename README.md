@@ -10,6 +10,24 @@ Yc is Free and Open Source Software (FOSS). It is licensed under a modified
 used by [Pixar Animation Studios](https://www.pixar.com/) for use on the
 [OpenSubdiv](http://graphics.pixar.com/opensubdiv/docs/intro.html) project.
 
+## Getting Started
+
+To get started, clone the repo, and then run the following two commands in the
+root directory:
+
+```
+git submodule update --init --recursive
+scripts/setup.sh
+```
+
+## Dependencies
+
+Yc depends on CMake. On Ubuntu, it can be installed with the following command:
+
+```
+sudo apt install cmake cmake-curses-gui
+```
+
 ## Status
 
 Yc is not even in Alpha stage yet. This software is not ready for use.
