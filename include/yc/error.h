@@ -59,7 +59,7 @@ extern "C" {
  * A macro to mark error handling. This macro should be put
  * around an expression that, if true, represents an error.
  * @param expr	An expression that, if true (nonzero), means
- 				an error occurred.
+                an error occurred.
  */
 #define yerror yunlikely
 
@@ -71,4 +71,4 @@ extern "C" {
 }
 #endif
 
-#endif // YC_ERROR_H
+#endif  // YC_ERROR_H

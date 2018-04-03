@@ -49,7 +49,7 @@ extern "C" {
 
 #ifndef _WIN32
 
-#include <unistd.h>
+#	include <unistd.h>
 
 #else
 /* This is intended as a drop-in replacement for unistd.h on Windows.
@@ -57,79 +57,79 @@ extern "C" {
  * https://stackoverflow.com/a/826027/1202830
  */
 
-#include <stdlib.h>
-#include <io.h>
+#	include <io.h>
+#	include <stdlib.h>
 
 // getopt at: https://gist.github.com/ashelly/7776712
 //#include <getopt.h>
 
 // For getpid() and the exec..() family.
-#include <process.h>
+#	include <process.h>
 
 // For _getcwd() and _chdir().
-#include <direct.h>
+#	include <direct.h>
 
-#define getcwd _tgetcwd
-#define chdir _tchdir
+#	define getcwd _tgetcwd
+#	define chdir _tchdir
 
-#define srandom srand
-#define random rand
+#	define srandom srand
+#	define random rand
 
 /* Values for the second argument to access.
    These may be OR'd together.  */
 
 // Test for read permission.
-#define R_OK    (4)
+#	define R_OK (4)
 
 // Test for write permission.
-#define W_OK    (2)
+#	define W_OK (2)
 
 // Execute permission - unsupported in Windows.
 //#define   X_OK    1
 
 // Test for existence.
-#define F_OK    0
+#	define F_OK 0
 
-#define access _access
-#define dup2 _dup2
-#define execve _execve
-#define ftruncate _chsize
-#define unlink _unlink
-#define fileno _fileno
-#define getcwd _getcwd
-#define chdir _chdir
-#define isatty _isatty
-#define lseek _lseek
+#	define access _access
+#	define dup2 _dup2
+#	define execve _execve
+#	define ftruncate _chsize
+#	define unlink _unlink
+#	define fileno _fileno
+#	define getcwd _getcwd
+#	define chdir _chdir
+#	define isatty _isatty
+#	define lseek _lseek
 
 // The functions read(), write(), and close() are NOT being #defined
 // here, because while there are file handle specific versions for
 // Windows, they probably don't work for sockets. You need to look
 // at your app and consider whether to call e.g. closesocket().
 
-#ifdef _WIN64
-#define ssize_t __int64
-#else
-#define ssize_t long
-#endif
+#	ifdef _WIN64
+#		define ssize_t __int64
+#	else
+#		define ssize_t long
+#	endif
 
-#define STDIN_FILENO 0
-#define STDOUT_FILENO 1
-#define STDERR_FILENO 2
+#	define STDIN_FILENO 0
+#	define STDOUT_FILENO 1
+#	define STDERR_FILENO 2
 
 // Should be in some equivalent to <sys/types.h>.
-typedef __int8            int8_t;
-typedef __int16           int16_t;
-typedef __int32           int32_t;
-typedef __int64           int64_t;
-typedef unsigned __int8   uint8_t;
-typedef unsigned __int16  uint16_t;
-typedef unsigned __int32  uint32_t;
-typedef unsigned __int64  uint64_t;
+typedef __int8 int8_t;
+typedef __int16 int16_t;
+typedef __int32 int32_t;
+typedef __int64 int64_t;
+typedef unsigned __int8 uint8_t;
+typedef unsigned __int16 uint16_t;
+typedef unsigned __int32 uint32_t;
+typedef unsigned __int64 uint64_t;
 
-#endif // _WIN32
+#endif  // _WIN32
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // YC_UNISTD_H
+#endif  // YC_UNISTD_H

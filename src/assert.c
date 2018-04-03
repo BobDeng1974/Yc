@@ -34,14 +34,14 @@
  *	******** END FILE DESCRIPTION ********
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <yc/assert.h>
 #include <yc/opt.h>
 
-void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg) {
+#include <stdio.h>
+#include <stdlib.h>
 
+void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg)
+{
 	// Pretty print the error and info.
 	fprintf(stderr, "\nAssert failed: %s\n\n", msg);
 	fprintf(stderr, "    Expected:  %s\n\n", expr_str);

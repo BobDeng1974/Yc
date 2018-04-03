@@ -46,24 +46,24 @@ extern "C" {
 
 #ifndef _WIN32
 
-#define ychar_t char
-#define YSTR(s) (s)
+#	define ychar_t char
+#	define YSTR(s) (s)
 
 #else
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <tchar.h>
+#	define WIN32_LEAN_AND_MEAN
+#	include <tchar.h>
+#	include <windows.h>
 
 /* Windows UNICODE wide character support */
-#define ychar_t TCHAR
-#define YSTR(s) _TEXT(s)
-#define strlen _tcslen
-#define strcpy _tcscpy
-#define strcat _tcscat
-#define strcmp _tcscmp
-#define strrchr _tcsrchr
-#define strncmp _tcsncmp
+#	define ychar_t TCHAR
+#	define YSTR(s) _TEXT(s)
+#	define strlen _tcslen
+#	define strcpy _tcscpy
+#	define strcat _tcscat
+#	define strcmp _tcscmp
+#	define strrchr _tcsrchr
+#	define strncmp _tcsncmp
 
 #endif
 
@@ -71,4 +71,4 @@ extern "C" {
 }
 #endif
 
-#endif // YC_STRING_H
+#endif  // YC_STRING_H

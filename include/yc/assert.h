@@ -42,10 +42,10 @@
 extern "C" {
 #endif
 
+#include <yc/opt.h>
+
 #include <stdbool.h>
 #include <stdio.h>
-
-#include <yc/opt.h>
 
 /**
  * @file assert.h
@@ -87,11 +87,11 @@ void _yassert_fail(const char* expr, const char* file, int line, const char* fun
 #	ifndef __YASSERT__
 #		define __YASSERT__
 #	endif
-
-#	define yassert(Expr, Msg) ((void)((Expr) || (_yassert_fail(#Expr, __FILE__, __LINE__, __func__, (Msg)), 0)))
-
+// clang-format off
+#	define yassert(Expr, Msg) ((void) ((Expr) || (_yassert_fail(#Expr, __FILE__, __LINE__, __func__, (Msg)), 0)))
+// clang-format on
 #else
-#	define yassert(Expr, Msg) ((void)(Expr), 0)
+#	define yassert(Expr, Msg) ((void) (Expr), 0)
 #endif
 
 /**
@@ -102,4 +102,4 @@ void _yassert_fail(const char* expr, const char* file, int line, const char* fun
 }
 #endif
 
-#endif // YC_H
+#endif  // YC_H

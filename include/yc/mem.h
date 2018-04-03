@@ -42,9 +42,9 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-
 #include <yc/opt.h>
+
+#include <stddef.h>
 
 /**
  * @file mem.h
@@ -123,7 +123,6 @@ void* yrecalloc(void* ptr, size_t size) yinline ynoretalias;
  */
 size_t yxmalloc(ynonnull void* ptr, size_t size) yinline;
 
-
 /**
  * Attempts to resize the memory pointed to by ptr to be newsize bytes.
  * It also zeroes any new allocated memory. If it doesn't succeed, it
@@ -180,4 +179,4 @@ void ysfree(void* ptr, size_t size) yinline;
 }
 #endif
 
-#endif // YC_MEM_H
+#endif  // YC_MEM_H

@@ -89,4 +89,4 @@ extern "C" {
 }
 #endif
 
-#endif // YC_UTILS_H
+#endif  // YC_UTILS_H

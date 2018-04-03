@@ -34,128 +34,132 @@
  *	******** END FILE DESCRIPTION ********
  */
 
-#include <jemalloc/jemalloc.h>
-
 #include <yc/assert.h>
 #include <yc/mem.h>
 #include <yc/opt.h>
+
+#include <jemalloc/jemalloc.h>
 
 #ifdef __YASSERT__
 const char* yptrNullMsg = "ptr is NULL";
 const char* ysizeZeroMsg = "size is 0";
 #endif
 
-void* ymalloc(size_t size) {
+void* ymalloc(size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 	return je_mallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
-void* ycalloc(size_t num, size_t size) {
+void* ycalloc(size_t num, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 	return je_mallocx(num * size, JEMALLOC_FLAGS_CALLOC);
 }
 
-void* yrealloc(void* ptr, size_t size) {
-
+void* yrealloc(void* ptr, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 
 	void* result;
 
 	// If the pointer is not NULL...
-	if (ptr != NULL) {
-
+	if (ptr != NULL)
+	{
 		// Try to resize in place.
 		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 
 		// If the in-place worked, set the
 		// result. Otherwise, reallocate.
-		if (newlen == size) {
+		if (newlen == size)
 			result = ptr;
-		}
-		else {
+		else
+		{
 			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_NONE);
 		}
 	}
 
 	// If the pointer is NULL, just malloc.
-	else {
+	else
+	{
 		result = je_mallocx(size, JEMALLOC_FLAGS_NONE);
 	}
 
 	return result;
 }
 
-void* yrecalloc(void* ptr, size_t size) {
-
+void* yrecalloc(void* ptr, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 
 	void* result;
 
 	// If the pointer is not NULL...
-	if (ptr != NULL) {
-
+	if (ptr != NULL)
+	{
 		// Try to resize in place.
 		size_t newlen = je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 
 		// If the in-place worked, set the
 		// result. Otherwise, reallocate.
-		if (newlen == size) {
+		if (newlen == size)
 			result = ptr;
-		}
-		else {
+		else
+		{
 			result = je_rallocx(ptr, size, JEMALLOC_FLAGS_CALLOC);
 		}
 	}
 
 	// If the pointer is NULL, just malloc.
-	else {
+	else
+	{
 		result = je_mallocx(size, JEMALLOC_FLAGS_CALLOC);
 	}
 
 	return result;
 }
 
-size_t yxmalloc(void* ptr, size_t size) {
+size_t yxmalloc(void* ptr, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 	yassert(ptr != NULL, yptrNullMsg);
 	return je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_NONE);
 }
 
-size_t yxcalloc(void* ptr, size_t size) {
+size_t yxcalloc(void* ptr, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 	yassert(ptr != NULL, yptrNullMsg);
 	return je_xallocx(ptr, size, 0, JEMALLOC_FLAGS_CALLOC);
 }
 
-size_t ynalloc(size_t size) {
+size_t ynalloc(size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 	return je_nallocx(size, JEMALLOC_FLAGS_NONE);
 }
 
-size_t ysalloc(void* ptr) {
+size_t ysalloc(void* ptr)
+{
 	yassert(ptr != NULL, yptrNullMsg);
 	return je_sallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
-void yfree(void* ptr) {
-
+void yfree(void* ptr)
+{
 	// We need to handle this.
-	if (ptr == NULL) {
-		return;
-	}
+	if (ptr == NULL) return;
 
 	// Free the data.
 	je_dallocx(ptr, JEMALLOC_FLAGS_NONE);
 }
 
-void ysfree(void* ptr, size_t size) {
-
+void ysfree(void* ptr, size_t size)
+{
 	yassert(size != 0, ysizeZeroMsg);
 
 	// We need to handle this.
-	if (ptr == NULL) {
-		return;
-	}
+	if (ptr == NULL) return;
 
 	// Free the data.
 	je_sdallocx(ptr, size, JEMALLOC_FLAGS_NONE);

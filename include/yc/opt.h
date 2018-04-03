@@ -129,71 +129,71 @@ extern "C" {
 #		define yoptnone yattr(optnone)
 #	else
 #		define yoptnone
-#	endif // __has_attribute(optnone)
+#	endif  // __has_attribute(optnone)
 
 #	if defined(LINK_TIME_OPTIMISATION) && !defined(SAVE_ON_FLASH) && defined(NDEBUG) && __has_attribute(always_inline)
 #		define yinline yattr(always_inline)
 #	else
 #		define yinline
-#	endif // defined(LINK_TIME_OPTIMISATION)
+#	endif  // defined(LINK_TIME_OPTIMISATION)
 
 #	if __has_attribute(noinline)
 #		define ynoinline yattr(noinline)
 #	else
 #		define ynoinline
-#	endif // __has_attribute(noinline)
+#	endif  // __has_attribute(noinline)
 
 #	if __has_attribute(pure)
 #		define ypure yattr(pure)
 #	else
 #		define ypure
-#	endif // __has_attribute(pure)
+#	endif  // __has_attribute(pure)
 
 #	if __has_attribute(const)
 #		define yconst yattr(const)
 #	else
 #		define yconst
-#	endif // __has_attribute(const)
+#	endif  // __has_attribute(const)
 
 #	if __has_attribute(malloc)
 #		define ynoretalias yattr(malloc)
 #	else
 #		define ynoretalias
-#	endif // __has_attribute(malloc)
+#	endif  // __has_attribute(malloc)
 
 #	if __has_attribute(nonnull)
 #		define ynonnull yattr(nonnull)
 #	else
 #		define ynonnull
-#	endif // __has_attribute(nonnull)
+#	endif  // __has_attribute(nonnull)
 
 #	if __has_attribute(returns_nonnull)
 #		define yretnonnull yattr(returns_nonnull)
 #	else
 #		define yretnonnull
-#	endif // __has_attribute(returns_nonnull)
+#	endif  // __has_attribute(returns_nonnull)
 
 #	if __has_attribute(noreturn)
 #		define ynoreturn yattr(noreturn)
 #	else
 #		define ynoreturn
-#	endif // __has_attribute(noreturn)
+#	endif  // __has_attribute(noreturn)
 
 #	if __has_attribute(packed)
 #		define ypacked yattr(packed)
 #	else
 #		define ypacked
-#	endif // __has_attribute(packed)
+#	endif  // __has_attribute(packed)
 
 #	if __has_builtin(__builtin_expect)
-#		define ylikely(expr)   __builtin_expect(!!(expr), 1)
+#		define ylikely(expr) __builtin_expect(!!(expr), 1)
 #		define yunlikely(expr) __builtin_expect(!!(expr), 0)
 #	else
-#		define ylikely(expr)   (expr)
+#		define ylikely(expr) (expr)
 #		define yunlikely(expr) (expr)
-#	endif // __has_builtin(__builtin_expect)
+#	endif  // __has_builtin(__builtin_expect)
 
-#else // __clang__
+#else  // __clang__
 
 #	define yoptnone
 #	define yinline
@@ -205,10 +205,10 @@ extern "C" {
 #	define yretnonnull
 #	define ynoreturn
 #	define ypacked
-#	define ylikely(expr)   (expr)
+#	define ylikely(expr) (expr)
 #	define yunlikely(expr) (expr)
 
-#endif // __clang__
+#endif  // __clang__
 
 /**
  * @}
@@ -218,4 +218,4 @@ extern "C" {
 }
 #endif
 
-#endif // YC_OPT_H
+#endif  // YC_OPT_H

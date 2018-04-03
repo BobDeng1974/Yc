@@ -44,11 +44,11 @@ extern "C" {
 
 #ifndef _WIN32
 
-#include <stdio.h>
+#	include <stdio.h>
 
 #else
 
-#include <stdio.h>
+#	include <stdio.h>
 
 #	ifdef _UNICODE
 
@@ -114,10 +114,10 @@ extern "C" {
 
 #	endif
 
-#endif // _WIN32
+#endif  // _WIN32
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // YC_STDIO_H
+#endif  // YC_STDIO_H
