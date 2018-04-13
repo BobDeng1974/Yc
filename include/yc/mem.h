@@ -61,12 +61,12 @@ extern "C" {
 /**
  * Used in malloc-like functions; no zeroing.
  */
-#define JEMALLOC_FLAGS_NONE 0
+#define JEMALLOC_FLAGS_NONE (0)
 
 /**
  * Used in calloc-like functions; it has zeroing.
  */
-#define JEMALLOC_FLAGS_CALLOC MALLOCX_ZERO
+#define JEMALLOC_FLAGS_CALLOC (MALLOCX_ZERO)
 
 /**
  * Allocates at least size bytes of memory and returns a pointer to it.
