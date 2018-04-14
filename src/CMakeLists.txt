@@ -28,7 +28,6 @@ set("YC_SRC"
 
 	# Put all source files here.
 	"assert.c"
-	"mem.c"
 )
 
 # Include jemalloc's directories.

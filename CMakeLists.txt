@@ -106,14 +106,11 @@ endif()
 
 set("YC_DOCS_DIR" "docs")
 set("YC_INCLUDE_DIR" "include")
-set("YC_LIB_DIR" "lib")
 set("YC_SRC_DIR" "src")
 
 add_subdirectory("cmake")
 
 add_subdirectory("${YC_DOCS_DIR}")
-
-add_subdirectory("${YC_LIB_DIR}")
 
 include_directories("${YC_INCLUDE_DIR}")
 add_subdirectory("${YC_INCLUDE_DIR}")
