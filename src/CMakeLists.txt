@@ -30,29 +30,18 @@ set("YC_SRC"
 	"assert.c"
 )
 
-# Include jemalloc's directories.
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../lib/jemalloc/include")
-
 # Make sure we find dl and pthread.
 find_library(DL dl "/usr/lib" "/usr/local/lib")
 find_library(PTHREAD pthread PATHS "/usr/lib" "/usr/local/lib")
 
-# Set the library names.
-set(JEMALLOC_PIC "jemalloc_pic")
-set(YC_PIC "${PROJECT_NAME}_pic")
-
-# Create the library.
-create_merge_library(
-	"${YC_PIC}" "${YC_SRC}"
-
-	# Add required libraries here.
-	"${PTHREAD}"
-	"${JEMALLOC_PIC}"
-	"${DL}"
-)
-
 # Set the name of the master library.
 set(YC "${PROJECT_NAME}")
 
-# Merge all libraries.
-merge_libs("${YC}")
+# Create the library.
+create_pic_library(
+	"${YC}" "${YC}" "${YC_SRC}" YES
+
+	# Add required libraries here.
+	"${PTHREAD}"
+	"${DL}"
+)
