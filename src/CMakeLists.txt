@@ -32,7 +32,7 @@ set("YC_SRC"
 )
 
 # Include jemalloc's directories.
-include_directories("${CMAKE_SOURCE_DIR}/lib/jemalloc/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../lib/jemalloc/include")
 
 # Make sure we find dl and pthread.
 find_library(DL dl "/usr/lib" "/usr/local/lib")
