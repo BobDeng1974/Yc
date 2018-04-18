@@ -91,7 +91,7 @@ void _yassert_fail(const char* expr, const char* file, int line, const char* fun
 #	define yassert(Expr, Msg) ((void) ((Expr) || (_yassert_fail(#Expr, __FILE__, __LINE__, __func__, (Msg)), 0)))
 // clang-format on
 #else
-#	define yassert(Expr, Msg) ((void) (Expr), 0)
+#	define yassert(Expr, Msg) ((void) 0)
 #endif
 
 /**
