@@ -42,12 +42,10 @@
 
 void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg)
 {
-	// Pretty print the error and info.
 	fprintf(stderr, "\nAssert failed: %s\n\n", msg);
 	fprintf(stderr, "    Expected:  %s\n\n", expr_str);
 	fprintf(stderr, "    Source:    %s:%d\n\n", file, line);
 	fprintf(stderr, "    Function:  %s()\n\n", func);
 
-	// Abort.
 	abort();
 }
