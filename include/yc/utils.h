@@ -75,14 +75,7 @@ extern "C" {
 #	define yunused yattr(unused)
 
 #else
-
-#	define yattr(s)
-
-#	define yctor
-#	define ydtor
-
-#	define yunused
-
+#	error "Clang is the only supported compiler"
 #endif
 
 #ifdef __cplusplus

@@ -187,27 +187,14 @@ extern "C" {
 
 #	if __has_builtin(__builtin_expect)
 #		define ylikely(expr) __builtin_expect(!!(expr), 1)
-#		define yunlikely(expr) __builtin_expect(!!(expr), 0)
+#		define yunlikely(expr) __builtin_expect(!(expr), 0)
 #	else
 #		define ylikely(expr) (expr)
 #		define yunlikely(expr) (expr)
 #	endif  // __has_builtin(__builtin_expect)
 
 #else  // __clang__
-
-#	define yoptnone
-#	define yinline
-#	define ynoinline
-#	define ypure
-#	define yconst
-#	define ynoretalias
-#	define ynonnull
-#	define yretnonnull
-#	define ynoreturn
-#	define ypacked
-#	define ylikely(expr) (expr)
-#	define yunlikely(expr) (expr)
-
+#	error "Clang is the only supported compiler"
 #endif  // __clang__
 
 /**
