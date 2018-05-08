@@ -48,32 +48,14 @@ extern "C" {
  */
 
 /**
- * @def yctor
- * A macro to label as a ctor/init function
- * (a function to run before main is called).
- */
-
-/**
- * @def ydtor
- * A macro to label as a dtor/fini function
- * (a function to run after main returns).
- */
-
-/**
  * @def yunused
  * A macro to label anything as unused
  * (to silence warnings).
  */
 
 #ifdef __clang__
-
 #	define yattr(s) __attribute__((s))
-
-#	define yctor yattr(constructor)
-#	define ydtor yattr(destructor)
-
 #	define yunused yattr(unused)
-
 #else
 #	error "Clang is the only supported compiler"
 #endif
