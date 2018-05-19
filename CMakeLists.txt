@@ -80,8 +80,11 @@ endif()
 # If we are in release mode...
 if("${CMAKE_BUILD_TYPE}" MATCHES "Release")
 
-	# Add link time optimization.
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -flto")
+	option(YC_ENABLE_LTO "Build with link time optimization" OFF)
+
+	if ("${YC_ENABLE_LTO}")
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -flto")
+	endif()
 
 	# Have an option to harden Yc.
 	option(YC_HARDEN "Build with hardened security" OFF)
