@@ -178,7 +178,7 @@ extern "C" {
 
 #	if __has_attribute(nonnull)
 #		define yallnonnull yattr(nonnull)
-#		define yparamsnonnull(...) yattr(nonnull((__VA_ARGS__)))
+#		define yparamsnonnull(...) yattr(nonnull(__VA_ARGS__))
 #	else
 #		define yallnonnull
 #		define yparamsnonnull(...) yattr(nonnull((__VA_ARGS__)))
