@@ -40,6 +40,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+yinline
 void _yassert_fail(const char* expr_str, const char* file, int line, const char* func, const char* msg)
 {
 	fprintf(stderr, "\nAssert failed: %s\n\n", msg);

@@ -53,15 +53,19 @@ extern "C" {
  * (to silence warnings).
  */
 
-#ifdef __clang__
-#	define yattr(s) __attribute__((s))
-#	define yunused yattr(unused)
-#else
-#	error "Clang is the only supported compiler"
+#ifdef __linux__
+
+#	if defined(__clang__) || defined(__GNUC__)
+#		define yattr(s) __attribute__((s))
+#		define yunused yattr(unused)
+#	else
+#		error "Clang and GCC are the only supported compilers"
+#	endif
+
 #endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  // YC_UTILS_H
+#endif // YC_UTILS_H

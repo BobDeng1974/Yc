@@ -123,7 +123,7 @@ extern "C" {
  * @param expr	An expression that is likely to be zero (false).
  */
 
-#ifdef __clang__
+#if defined(__clang__) || defined(__GNUC__)
 
 #	if __has_attribute(optnone)
 #		define yoptnone yattr(optnone)
@@ -147,55 +147,56 @@ extern "C" {
 #		define ypure yattr(pure)
 #	else
 #		define ypure
-#	endif  // __has_attribute(pure)
+#	endif // __has_attribute(pure)
 
 #	if __has_attribute(const)
 #		define yconst yattr(const)
 #	else
 #		define yconst
-#	endif  // __has_attribute(const)
+#	endif // __has_attribute(const)
 
 #	if __has_attribute(malloc)
 #		define ynoretalias yattr(malloc)
 #	else
 #		define ynoretalias
-#	endif  // __has_attribute(malloc)
+#	endif // __has_attribute(malloc)
 
 #	if __has_attribute(nonnull)
 #		define ynonnull yattr(nonnull)
 #	else
 #		define ynonnull
-#	endif  // __has_attribute(nonnull)
+#	endif // __has_attribute(nonnull)
 
 #	if __has_attribute(returns_nonnull)
 #		define yretnonnull yattr(returns_nonnull)
 #	else
 #		define yretnonnull
-#	endif  // __has_attribute(returns_nonnull)
+#	endif // __has_attribute(returns_nonnull)
 
 #	if __has_attribute(noreturn)
 #		define ynoreturn yattr(noreturn)
 #	else
 #		define ynoreturn
-#	endif  // __has_attribute(noreturn)
+#	endif // __has_attribute(noreturn)
 
 #	if __has_attribute(packed)
 #		define ypacked yattr(packed)
 #	else
 #		define ypacked
-#	endif  // __has_attribute(packed)
+#	endif // __has_attribute(packed)
 
-#	if __has_builtin(__builtin_expect)
+#	if defined(__GNUC__)
+#		define ylikely(expr) __builtin_expect(!!(expr), 1)
+#		define yunlikely(expr) __builtin_expect(!!(expr), 0)
+#	elif __has_builtin((__builtin_expect))
 #		define ylikely(expr) __builtin_expect(!!(expr), 1)
 #		define yunlikely(expr) __builtin_expect(!!(expr), 0)
 #	else
 #		define ylikely(expr) (expr)
 #		define yunlikely(expr) (expr)
-#	endif  // __has_builtin(__builtin_expect)
+#	endif // __has_builtin(__builtin_expect)
 
-#else  // __clang__
-#	error "Clang is the only supported compiler"
-#endif  // __clang__
+#endif // __clang__ || __GNUC__
 
 /**
  * @}
