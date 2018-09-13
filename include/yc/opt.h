@@ -161,10 +161,14 @@ extern "C" {
 #		define ynoretalias
 #	endif // __has_attribute(malloc)
 
+#	define ynonull _Nonnull
+
 #	if __has_attribute(nonnull)
-#		define ynonnull yattr(nonnull)
+#		define yallnonnull yattr(nonnull)
+#		define yparamsnonnull(...) yattr(nonnull((__VA_ARGS__)))
 #	else
-#		define ynonnull
+#		define yallnonnull
+#		define yparamsnonnull(...) yattr(nonnull((__VA_ARGS__)))
 #	endif // __has_attribute(nonnull)
 
 #	if __has_attribute(returns_nonnull)
