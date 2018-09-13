@@ -93,17 +93,30 @@ extern "C" {
 
 /**
  * @def ynonnull
- * An parameter attribute that says that the arg cannot be NULL.
+ * A parameter attribute that says that the pointer arg cannot be NULL. This
+ * attribute is not as strong as the @a yallnonnull and @a yparamsnonnull; it
+ * does not say that passing in NULL is undefined behavior.
+ */
+
+/**
+ * @def yallnonnull
+ * A parameter attribute that says that all pointer args cannot be NULL.
+ */
+
+/**
+ * @def yparamsnonnull(...)
+ * A function attribute that says that the pointer args at the given 1-based
+ * indices cannot be NULL.
  */
 
 /**
  * @def yretnonnull
- * An parameter attribute that says that function cannot return NULL.
+ * A function attribute that says that function cannot return NULL.
  */
 
 /**
  * @def ynoreturn
- * An attribute that says that the function does not return.
+ * An function attribute that says that the function does not return.
  */
 
 /**
