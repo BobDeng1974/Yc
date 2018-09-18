@@ -35,7 +35,8 @@ set(ignoreMe "${CMAKE_CXX_COMPILER}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 
 # If we are in debug mode...
-if("${CMAKE_BUILD_TYPE}" MATCHES "Debug" OR "${CMAKE_BUILD_TYPE}" MATCHES "RelWithDegInfo")
+if(("${CMAKE_BUILD_TYPE}" MATCHES "Debug" OR "${CMAKE_BUILD_TYPE}" MATCHES "RelWithDegInfo")
+		AND "${CMAKE_C_COMPILER_ID}" MATCHES "Clang")
 
 	# Create the sanitizer options.
 	option(YC_SANITIZER_ADDRESS "Build with AddressSanitizer" ON)

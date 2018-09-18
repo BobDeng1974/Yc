@@ -58,9 +58,14 @@ extern "C" {
 #	if defined(__clang__) || defined(__GNUC__)
 #		define yattr(s) __attribute__((s))
 #		define yunused yattr(unused)
+#		define yctor yattr(constructor)
 #	else
 #		error "Clang and GCC are the only supported compilers"
 #	endif
+
+#else
+
+#	define yctor
 
 #endif
 
